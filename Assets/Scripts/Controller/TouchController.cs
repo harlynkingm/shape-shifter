@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour {
 
 	private ShapeObject selected;
 //	private bool hasForceTouch;
+	private HomeController homeController;
 
 	void Start () {
+		homeController = GameObject.FindGameObjectWithTag("HomeBar").GetComponent<HomeController>();
 //		hasForceTouch = Input.touchPressureSupported;
 	}
 
@@ -25,13 +28,17 @@ public class TouchController : MonoBehaviour {
 
 	void BeginSelect (Touch touch) {
 		Vector3 pos = Camera.main.ScreenToWorldPoint(touch.position);
-		RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
-		if (hit && hit.transform.gameObject.GetComponent<ShapeObject>()){
-			selected = hit.transform.gameObject.GetComponent<ShapeObject>();
-			if (selected.isSelectable){
-				selected.StartSelect(pos);
+		if (!EventSystem.current.IsPointerOverGameObject(Input.GetTouch(0).fingerId)){
+			RaycastHit2D hit = Physics2D.Raycast(pos, Vector2.zero);
+			if (hit && hit.transform.gameObject.GetComponent<ShapeObject>()){
+				selected = hit.transform.gameObject.GetComponent<ShapeObject>();
+				if (selected.isSelectable){
+					selected.StartSelect(pos);
+				} else {
+					ResetSelection();
+				}
 			} else {
-				ResetSelection();
+				homeController.AnimateToggle();
 			}
 		}
 	}

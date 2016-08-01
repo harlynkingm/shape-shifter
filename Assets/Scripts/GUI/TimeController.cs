@@ -13,9 +13,9 @@ public class TimeController : MonoBehaviour {
 	public GameObject stop;
 	public GameObject cancel;
 	public GameObject completed;
-	public Image white;
 
 	private GameObject player;
+	private LevelLoader levelLoader;
 	private Vector3 initPos;
 	private String state = "Stop";
 	private List<GameObject> states = new List<GameObject>();
@@ -30,14 +30,13 @@ public class TimeController : MonoBehaviour {
 		thisBg = GetComponent<Image>();
 		shapes = GameObject.FindGameObjectsWithTag("ShapeObject");
 		player = GameObject.FindWithTag("Player");
+		levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
 		initPos = player.transform.position;
 		states.Add(play);
 		states.Add(pause);
 		states.Add(stop);
 		states.Add(cancel);
 		states.Add(completed);
-		white.color = new Color(1.0F, 1.0F, 1.0F, 1.0F);
-		StartCoroutine(Fade(white, 0F, -1));
 	}
 
 	void Update () {
@@ -176,19 +175,7 @@ public class TimeController : MonoBehaviour {
 		int curScene = SceneManager.GetActiveScene().buildIndex;
 		int totalScenes = SceneManager.sceneCountInBuildSettings;
 		if (curScene + 1 < totalScenes){
-			StartCoroutine(Fade(white, 1.0F, curScene + 1));
-		}
-	}
-
-	IEnumerator Fade(Image target, float finalVal, int level) {
-		while (target.color.a != finalVal){
-			Color c = target.color;
-			c.a = Mathf.MoveTowards(target.color.a, finalVal, 0.02F);
-			target.color = c;
-			yield return null;
-		}
-		if (level > -1){
-			SceneManager.LoadScene(level);
+			levelLoader.LoadLevel(curScene + 1);
 		}
 	}
 

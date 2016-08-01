@@ -47,10 +47,12 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Controller\TouchController.cs" />
      <Compile Include="Assets\Scripts\GUI\BottomBehindSetter.cs" />
+     <Compile Include="Assets\Scripts\GUI\HomeController.cs" />
      <Compile Include="Assets\Scripts\GUI\LevelLoader.cs" />
      <Compile Include="Assets\Scripts\GUI\MyHorizontalScrollSnap.cs" />
      <Compile Include="Assets\Scripts\GUI\SecondScrollRect.cs" />
      <Compile Include="Assets\Scripts\GUI\TimeController.cs" />
+     <Compile Include="Assets\Scripts\Level\AnimationOff.cs" />
      <Compile Include="Assets\Scripts\Object\CaptureObject.cs" />
      <Compile Include="Assets\Scripts\Object\FallZone.cs" />
      <Compile Include="Assets\Scripts\Object\ShapeObject.cs" />

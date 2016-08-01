@@ -49,6 +49,7 @@ public class SecondScrollRect : MonoBehaviour, IBeginDragHandler, IEndDragHandle
 				//disable the current scroll rect so it doesnt move.
 				_myScrollRect.enabled = false;
 				OtherScrollRect.OnBeginDrag(eventData);
+				otherScrollSnap.OnBeginDrag(eventData);
 			}
 		}
 		else if (vertical > horizontal)

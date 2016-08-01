@@ -92,4 +92,8 @@ public class ShapeObject : MonoBehaviour {
 		cancelled = false;
 		fatherTime.StopCancel();
 	}
+
+	public bool isSelected (){
+		return selected;
+	}
 }
