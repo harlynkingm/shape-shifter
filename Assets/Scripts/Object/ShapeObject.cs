@@ -48,10 +48,10 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	public void EndSelect () {
-		selected = false;
 		if (cancelled) {
 			transform.position = startPos;
 		}
+		selected = false;
 	}
 
 	public void Move(Vector3 worldPoint) {
@@ -75,13 +75,17 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
-		cancelled = true;
-		fatherTime.Cancel();
+		if (selected){
+			cancelled = true;
+			fatherTime.Cancel();
+		}
 	}
 
 	void OnTriggerStay2D(Collider2D coll) {
-		cancelled = true;
-		fatherTime.Cancel();
+		if (selected){
+			cancelled = true;
+			fatherTime.Cancel();
+		}
 	}
 
 	void OnTriggerExit2D(Collider2D coll) {
