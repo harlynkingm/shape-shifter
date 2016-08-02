@@ -12,6 +12,7 @@ public class FallZone : MonoBehaviour {
 	void OnTriggerEnter2D (Collider2D coll) {
 		if (!fatherTime.CheckStatus() && coll.gameObject.tag == "Player"){
 			fatherTime.ResetLevel();
+			Handheld.Vibrate();
 		}
 	}
 

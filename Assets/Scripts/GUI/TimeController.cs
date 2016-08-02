@@ -149,7 +149,7 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void StopCancel() {
-		if (!ended){
+		if (!ended && state != "Play"){
 			disableAll(play);
 			state = "Stop";
 		}
@@ -162,8 +162,6 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void ResetLevel() {
-//		int curScene = SceneManager.GetActiveScene().buildIndex;
-//		StartCoroutine(Fade(white, 1.0F, curScene));
 		Stop();
 	}
 

@@ -21,6 +21,11 @@ public class LevelLoader : MonoBehaviour {
 		StartCoroutine(Fade(loading, 1.0f, level));
 	}
 
+	public void ReloadLevel(){
+		int curScene = SceneManager.GetActiveScene().buildIndex;
+		LoadLevel(curScene);
+	}
+
 	public IEnumerator Fade(Image target, float finalVal, int level) {
 		while (target.color.a != finalVal){
 			Color c = target.color;
