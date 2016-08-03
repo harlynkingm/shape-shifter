@@ -50,26 +50,25 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void OnPress () {
-		targetFade = 0.14F;
-		switch (state) {
-		case "Stop":
-			Play();
-			break;
-		case "Play":
-			if (canPause){
-				Pause();
-			} else {
-				Stop();
+		if (!ended){
+			targetFade = 0.14F;
+			switch (state) {
+			case "Stop":
+				Play();
+				break;
+			case "Play":
+				if (canPause){
+					Pause();
+				} else {
+					Stop();
+				}
+				break;
+			case "Pause":
+				Play();
+				break;
+			case "Cancel":
+				break;
 			}
-			break;
-		case "Pause":
-			Play();
-			break;
-		case "Cancel":
-			break;
-		case "Completed":
-			NextLevel();
-			break;
 		}
 	}
 
@@ -159,6 +158,7 @@ public class TimeController : MonoBehaviour {
 		disableAll(completed);
 		state = "Completed";
 		ended = true;
+		Invoke("NextLevel", .7f);
 	}
 
 	public void ResetLevel() {

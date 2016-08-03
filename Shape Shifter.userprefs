@@ -1,17 +1,17 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Object/ShapeObject.cs">
     <Files>
+      <File FileName="Assets/Scripts/GUI/HomeController.cs" Line="22" Column="26" />
       <File FileName="Assets/Scripts/Object/CaptureObject.cs" Line="31" Column="26" />
-      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="91" Column="41" />
-      <File FileName="Assets/Scripts/GUI/TimeController.cs" Line="164" Column="28" />
-      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="31" Column="25" />
-      <File FileName="Assets/Scripts/Object/FallZone.cs" Line="13" Column="8" />
+      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="84" Column="75" />
+      <File FileName="Assets/Scripts/GUI/TimeController.cs" Line="154" Column="4" />
+      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Object/FallZone.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs" Line="34" Column="18" />
-      <File FileName="Assets/Scripts/GUI/SecondScrollRect.cs" Line="40" Column="3" />
-      <File FileName="Assets/Scripts/GUI/LevelLoader.cs" Line="26" Column="23" />
-      <File FileName="Assets/Scripts/GUI/HomeController.cs" Line="30" Column="65" />
-      <File FileName="Assets/Scripts/GUI/BottomBehindSetter.cs" Line="8" Column="60" />
+      <File FileName="Assets/Scripts/GUI/SecondScrollRect.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/LevelLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/BottomBehindSetter.cs" Line="1" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

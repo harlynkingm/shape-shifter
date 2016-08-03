@@ -19,9 +19,10 @@ public class HomeController : MonoBehaviour, IPointerClickHandler {
 		animating = true;
 		if (destination == 37.5f){
 			destination = -37.5f;
-			goBack = Time.time + 5f;
+			goBack = Time.time + 3f;
 		} else {
 			destination = 37.5f;
+			goBack = 0f;
 		}
 	}
 

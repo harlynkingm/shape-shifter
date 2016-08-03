@@ -6,8 +6,10 @@ using System.Threading;
 public class ShapeObject : MonoBehaviour {
 
 	public bool isSelectable;
+	public bool isBouncy;
 	public SpriteRenderer arrows;
 	public SpriteRenderer shadow;
+	public SpriteRenderer bounceBorder;
 
 	private RaycastHit hit; 
 	private Vector3 startDistance;
@@ -27,6 +29,9 @@ public class ShapeObject : MonoBehaviour {
 		bottomLeft = main.ScreenToWorldPoint(new Vector3(0, main.pixelHeight * 0.2F));
 		topRight = main.ScreenToWorldPoint(new Vector3(main.pixelWidth, main.pixelHeight * 0.9F));
 		RefreshSelectable();
+		if (isBouncy){
+			bounceBorder.color = new Color(1f, 1f, 1f, 0.48f);
+		}
 	}
 
 	void Update () {
@@ -71,6 +76,12 @@ public class ShapeObject : MonoBehaviour {
 		} else {
 			arrows.color = new Color(1F, 1F, 1F, 0F);
 			shadow.color = new Color(1F, 1F, 1F, 0F);
+		}
+	}
+		
+	void OnCollisionEnter2D(Collision2D coll) {
+		if (isBouncy && coll.gameObject.tag == "Player"){
+			coll.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 200f);
 		}
 	}
 
