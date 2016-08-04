@@ -32,7 +32,7 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 	void Update () {
 		if (lerp){
 			if (Mathf.Abs(screensContainer.localPosition.x - pageLocs[curPage]) > 1f){
-				screensContainer.localPosition = new Vector2(Mathf.Lerp(screensContainer.localPosition.x, pageLocs[curPage], 12f * Time.deltaTime), screensContainer.localPosition.y);
+				screensContainer.localPosition = new Vector2(Mathf.Lerp(screensContainer.localPosition.x, pageLocs[curPage], 10f * Time.deltaTime), screensContainer.localPosition.y);
 			} else {
 				screensContainer.localPosition = new Vector2(pageLocs[curPage], screensContainer.localPosition.y);
 				lerp = false;
