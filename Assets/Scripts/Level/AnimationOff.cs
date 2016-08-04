@@ -12,7 +12,7 @@ public class AnimationOff : MonoBehaviour {
 	void Update () {
 		if (thisGuy.isSelected()){
 			Destroy(thisGuy.GetComponent<Animator>());
-			thisGuy.GetComponent<SpriteRenderer>().color = Color.white;
+			thisGuy.transform.rotation = Quaternion.identity;
 		}
 	}
 }

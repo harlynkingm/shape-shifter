@@ -31,6 +31,8 @@ public class ShapeObject : MonoBehaviour {
 		RefreshSelectable();
 		if (isBouncy){
 			bounceBorder.color = new Color(1f, 1f, 1f, 0.48f);
+		} else {
+			GameObject.Destroy(bounceBorder.gameObject);
 		}
 	}
 
@@ -81,7 +83,11 @@ public class ShapeObject : MonoBehaviour {
 		
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (isBouncy && coll.gameObject.tag == "Player"){
-			coll.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 200f);
+//			coll.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 200f);
+//			Vector2 currentDirection = coll.transform.forward;
+//			Vector2 collNormal = coll.contacts[0].normal * -1;
+//			Vector2 bounceDirection = Vector2.Reflect(currentDirection, collNormal);
+			coll.rigidbody.AddForce(coll.contacts[0].normal * -1 * 200f);
 		}
 	}
 
