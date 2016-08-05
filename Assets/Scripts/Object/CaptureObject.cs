@@ -29,6 +29,7 @@ public class CaptureObject : MonoBehaviour {
 			collected = true;
 			speed = 666F;
 			fatherTime.EndLevel();
+			GameObject.Destroy(this.gameObject);
 		}
 	}
 }

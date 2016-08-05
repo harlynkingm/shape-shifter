@@ -30,7 +30,7 @@ public class ShapeObject : MonoBehaviour {
 		topRight = main.ScreenToWorldPoint(new Vector3(main.pixelWidth, main.pixelHeight * 0.9F));
 		RefreshSelectable();
 		if (isBouncy){
-			bounceBorder.color = new Color(1f, 1f, 1f, 0.48f);
+			bounceBorder.color = new Color(1f, 1f, 1f, 0.68f);
 		} else {
 			GameObject.Destroy(bounceBorder.gameObject);
 		}
