@@ -25,6 +25,7 @@ public class TimeController : MonoBehaviour {
 
 	private Image thisBg;
 	private float targetFade = 0.14F;
+	private bool isCollapsing;
 
 	void Start () {
 		thisBg = GetComponent<Image>();
@@ -50,7 +51,7 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void OnPress () {
-		if (!ended){
+		if (!ended && !isCollapsing){
 			targetFade = 0.14F;
 			switch (state) {
 			case "Stop":
@@ -175,6 +176,26 @@ public class TimeController : MonoBehaviour {
 		if (curScene + 1 < totalScenes){
 			levelLoader.LoadLevel(curScene + 1);
 		}
+	}
+
+	public bool getIsCollapsing () {
+		return isCollapsing;
+	}
+
+	public IEnumerator Collapse (Vector3 moveTo) {
+		isCollapsing = true;
+		player.GetComponent<CircleCollider2D>().isTrigger = true;
+		while (player.transform.localScale.x > 0.01f){
+			player.transform.localScale = Vector3.Lerp(player.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
+			player.transform.position = Vector3.MoveTowards(player.transform.position, moveTo, Time.deltaTime * 2f);
+			yield return null;
+		}
+		Stop();
+		while (player.transform.localScale.x < 0.99f){
+			player.transform.localScale = Vector3.Lerp(player.transform.localScale, Vector3.one, Time.deltaTime * 10f);
+			yield return null;
+		}
+		isCollapsing = false;
 	}
 
 }

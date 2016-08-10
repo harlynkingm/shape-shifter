@@ -16,7 +16,7 @@ public class PlayLevelButton : MonoBehaviour, IPointerClickHandler {
 	}
 
 	public void OnPointerClick ( PointerEventData eventData ) {
-		int tens = (levelset.currentPage() + 1) * 10;
+		int tens = (levelset.currentPage()) * 10;
 		int ones = (level.currentPage() + 1);
 		SaveController player = Camera.main.GetComponent<SaveController>();
 		if (player.canPlay(tens + ones)){
