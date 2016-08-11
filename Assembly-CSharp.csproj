@@ -45,13 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Controller\AnalyticsController.cs" />
      <Compile Include="Assets\Scripts\Controller\SaveController.cs" />
      <Compile Include="Assets\Scripts\Controller\TouchController.cs" />
      <Compile Include="Assets\Scripts\GUI\BottomBehindSetter.cs" />
      <Compile Include="Assets\Scripts\GUI\HomeController.cs" />
      <Compile Include="Assets\Scripts\GUI\LevelLoader.cs" />
+     <Compile Include="Assets\Scripts\GUI\LevelNumber.cs" />
+     <Compile Include="Assets\Scripts\GUI\LevelSelect.cs" />
      <Compile Include="Assets\Scripts\GUI\MyHorizontalScrollSnap.cs" />
      <Compile Include="Assets\Scripts\GUI\PlayLevelButton.cs" />
+     <Compile Include="Assets\Scripts\GUI\ResetButton.cs" />
      <Compile Include="Assets\Scripts\GUI\SecondScrollRect.cs" />
      <Compile Include="Assets\Scripts\GUI\SetReset.cs" />
      <Compile Include="Assets\Scripts\GUI\TimeController.cs" />

@@ -22,8 +22,11 @@ public class SaveController : MonoBehaviour {
 	}
 
 	public bool canPlay (int level) {
-//		return level <= PlayerPrefs.GetInt("HighestLevel") + 1;
-		return level <= 30;
+		return level <= PlayerPrefs.GetInt("HighestLevel") + 1;
+	}
+
+	public bool hasBeaten (int level){
+		return level <= PlayerPrefs.GetInt("HighestLevel");
 	}
 
 	public void FinishedLevel (int level) {

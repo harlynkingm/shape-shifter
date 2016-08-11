@@ -16,6 +16,8 @@ public class TimeController : MonoBehaviour {
 
 	private GameObject player;
 	private LevelLoader levelLoader;
+	private AnalyticsController analytics;
+	private SaveController save;
 	private Vector3 initPos;
 	private String state = "Stop";
 	private List<GameObject> states = new List<GameObject>();
@@ -32,6 +34,8 @@ public class TimeController : MonoBehaviour {
 		shapes = GameObject.FindGameObjectsWithTag("ShapeObject");
 		player = GameObject.FindWithTag("Player");
 		levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
+		analytics = Camera.main.gameObject.GetComponent<AnalyticsController>();
+		save = Camera.main.gameObject.GetComponent<SaveController>();
 		initPos = player.transform.position;
 		states.Add(play);
 		states.Add(pause);
@@ -130,6 +134,7 @@ public class TimeController : MonoBehaviour {
 		player.GetComponent<CircleCollider2D>().isTrigger = true;
 		SetShapeTriggers(true);
 		UnfreezeShapes();
+		analytics.addAttempt();
 	}
 
 	void Pause() {
@@ -159,7 +164,7 @@ public class TimeController : MonoBehaviour {
 		disableAll(completed);
 		state = "Completed";
 		ended = true;
-		Invoke("NextLevel", .7f);
+		Invoke("NextLevel", 0.7f);
 	}
 
 	public void ResetLevel() {
@@ -171,11 +176,14 @@ public class TimeController : MonoBehaviour {
 	}
 
 	void NextLevel () {
+		analytics.EndLevel();
 		int curScene = SceneManager.GetActiveScene().buildIndex;
+		save.FinishedLevel(curScene);
 		int totalScenes = SceneManager.sceneCountInBuildSettings;
 		if (curScene + 1 < totalScenes){
 			levelLoader.LoadLevel(curScene + 1);
 		}
+
 	}
 
 	public bool getIsCollapsing () {
