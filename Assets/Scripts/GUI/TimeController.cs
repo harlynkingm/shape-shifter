@@ -184,16 +184,18 @@ public class TimeController : MonoBehaviour {
 
 	public IEnumerator Collapse (Vector3 moveTo) {
 		isCollapsing = true;
-		player.GetComponent<CircleCollider2D>().isTrigger = true;
-		while (player.transform.localScale.x > 0.01f){
+		player.GetComponent<Rigidbody2D>().isKinematic = true;
+		while (player.transform.localScale.x > 0.03f){
 			player.transform.localScale = Vector3.Lerp(player.transform.localScale, Vector3.zero, Time.deltaTime * 10f);
-			player.transform.position = Vector3.MoveTowards(player.transform.position, moveTo, Time.deltaTime * 2f);
+			player.transform.position = Vector3.Lerp(player.transform.position, moveTo, Time.deltaTime * 3f);
 			yield return null;
 		}
-		Stop();
-		while (player.transform.localScale.x < 0.99f){
-			player.transform.localScale = Vector3.Lerp(player.transform.localScale, Vector3.one, Time.deltaTime * 10f);
-			yield return null;
+		if (!ended){
+			Stop();
+			while (player.transform.localScale.x < 0.99f){
+				player.transform.localScale = Vector3.Lerp(player.transform.localScale, Vector3.one, Time.deltaTime * 10f);
+				yield return null;
+			}
 		}
 		isCollapsing = false;
 	}

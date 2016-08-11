@@ -21,8 +21,10 @@ public class ShapeObject : MonoBehaviour {
 
 	private TimeController fatherTime;
 	private bool cancelled;
+	private SpriteRenderer selfImage;
 	
 	void Start () {
+		selfImage = GetComponent<SpriteRenderer>();
 		fatherTime = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
 		arrows.gameObject.transform.rotation = Quaternion.identity;
 		Camera main = Camera.main;
@@ -93,6 +95,7 @@ public class ShapeObject : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (selected){
+			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
 			cancelled = true;
 			fatherTime.Cancel();
 		}
@@ -100,12 +103,14 @@ public class ShapeObject : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D coll) {
 		if (selected){
+			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
 			cancelled = true;
 			fatherTime.Cancel();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D coll) {
+		selfImage.color = Color.white;
 		cancelled = false;
 		fatherTime.StopCancel();
 	}
