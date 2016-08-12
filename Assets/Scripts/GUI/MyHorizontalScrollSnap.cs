@@ -44,7 +44,7 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 	void Update () {
 		if (lerp){
 			if (Mathf.Abs(screensContainer.localPosition.x - pageLocs[curPage]) > 1f){
-				screensContainer.localPosition = new Vector2(Mathf.Lerp(screensContainer.localPosition.x, pageLocs[curPage], 10f * Time.deltaTime), screensContainer.localPosition.y);
+				screensContainer.localPosition = new Vector2(Mathf.Lerp(screensContainer.localPosition.x, pageLocs[curPage], 7.5f * Time.deltaTime), screensContainer.localPosition.y);
 			} else {
 				screensContainer.localPosition = new Vector2(pageLocs[curPage], screensContainer.localPosition.y);
 				lerp = false;
@@ -73,28 +73,34 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 	}
 
 	public void OnBeginDrag (PointerEventData data) {
-		lerp = false;
-		startDragTime = Time.time;
-		if (scale) screens[curPage].GetComponent<ScaleControl>().Shrink();
+		if (data.pointerId < 1){
+			lerp = false;
+			startDragTime = Time.time;
+			if (scale) screens[curPage].GetComponent<ScaleControl>().Shrink();
+		}
 	}
 		
 	public void OnEndDrag (PointerEventData data) {
-		float scrollVelocity = (data.position.x - data.pressPosition.x)/(Time.time - startDragTime);
-		if (Mathf.Abs(scrollVelocity) < 2000f){
-			curPage = findClosestPage(screensContainer.localPosition.x);
-		} else {
-			if (scrollVelocity < 0f){
-				NextPage();
+		if (data.pointerId < 1){
+			float scrollVelocity = (data.position.x - data.pressPosition.x)/(Time.time - startDragTime);
+			if (Mathf.Abs(scrollVelocity) < 2000f){
+				curPage = findClosestPage(screensContainer.localPosition.x);
 			} else {
-				PrevPage();
+				if (scrollVelocity < 0f){
+					NextPage();
+				} else {
+					PrevPage();
+				}
 			}
+			SetStart();
 		}
-		SetStart();
 	}
 
 	public void OnPointerClick (PointerEventData data) {
-		if (Mathf.Abs(data.position.x - data.pressPosition.x) < 1f){
-			NextPage();
+		if (data.pointerId < 1){
+			if (Mathf.Abs(data.position.x - data.pressPosition.x) < 1f){
+				NextPage();
+			}
 		}
 	}
 

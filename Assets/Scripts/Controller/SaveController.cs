@@ -5,6 +5,7 @@ public class SaveController : MonoBehaviour {
 
 	void Start () {
 		SetBlank();
+		Screen.sleepTimeout = SleepTimeout.NeverSleep;
 	}
 
 	void SetBlank() {

@@ -61,6 +61,7 @@ public class LevelSelectButton : MonoBehaviour, IPointerClickHandler {
 	}
 
 	IEnumerator ReadyPlayer () {
+		loader.loading.raycastTarget = true;
 		while (transform.localScale.x < 1.09f){
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 1.1f, Time.deltaTime * 7.5f);
 			transform.eulerAngles = new Vector3(0, 0, Mathf.LerpAngle(transform.eulerAngles.z, 10f, Time.deltaTime * 7.5f));

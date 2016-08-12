@@ -22,6 +22,8 @@ public class ShapeObject : MonoBehaviour {
 	private TimeController fatherTime;
 	private bool cancelled;
 	private SpriteRenderer selfImage;
+
+	private Vector3 lastPos;
 	
 	void Start () {
 		selfImage = GetComponent<SpriteRenderer>();
@@ -64,6 +66,7 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	public void Move(Vector3 worldPoint) {
+		lastPos = transform.position;
 		Vector3 newPos = new Vector3(worldPoint.x, worldPoint.y, 0) - startDistance;
 		newPos = new Vector3(
 			Mathf.Clamp(newPos.x, bottomLeft.x, topRight.x),
@@ -85,16 +88,15 @@ public class ShapeObject : MonoBehaviour {
 		
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (isBouncy && coll.gameObject.tag == "Player"){
-//			coll.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 200f);
-//			Vector2 currentDirection = coll.transform.forward;
-//			Vector2 collNormal = coll.contacts[0].normal * -1;
-//			Vector2 bounceDirection = Vector2.Reflect(currentDirection, collNormal);
 			coll.rigidbody.AddForce(coll.contacts[0].normal * -1 * 200f);
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (selected){
+			if (!cancelled){
+				startPos = lastPos;
+			}
 			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
 			cancelled = true;
 			fatherTime.Cancel();
