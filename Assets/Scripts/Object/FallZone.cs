@@ -7,12 +7,12 @@ public class FallZone : MonoBehaviour {
 
 	void Start () {
 		fatherTime = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
+		transform.position = new Vector3(0, -7f);
 	}
 
 	void OnTriggerEnter2D (Collider2D coll) {
 		if (!fatherTime.CheckStatus() && coll.gameObject.tag == "Player"){
 			fatherTime.ResetLevel();
-			Handheld.Vibrate();
 		}
 	}
 

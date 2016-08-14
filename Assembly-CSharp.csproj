@@ -60,6 +60,7 @@
      <Compile Include="Assets\Scripts\GUI\SetReset.cs" />
      <Compile Include="Assets\Scripts\GUI\TimeController.cs" />
      <Compile Include="Assets\Scripts\Level\AnimationOff.cs" />
+     <Compile Include="Assets\Scripts\Level\ToggleObjects.cs" />
      <Compile Include="Assets\Scripts\Object\BlackHole.cs" />
      <Compile Include="Assets\Scripts\Object\CaptureObject.cs" />
      <Compile Include="Assets\Scripts\Object\FallZone.cs" />

@@ -7,6 +7,7 @@ using UnityEngine.EventSystems;
 public class LevelLoader : MonoBehaviour {
 
 	public Image loading;
+	static int currentLevel;
 
 	void Start () {
 		for(int i = 0; i < transform.childCount; i++){
@@ -18,7 +19,12 @@ public class LevelLoader : MonoBehaviour {
 	}
 
 	public void LoadLevel(int level){
+		if (level > 0) currentLevel = level;
 		StartCoroutine(Fade(loading, 1.0f, level));
+	}
+
+	public int CurrentLevel(){
+		return currentLevel;
 	}
 
 	public void ReloadLevel(){

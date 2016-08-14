@@ -33,6 +33,10 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 			scroll.horizontalNormalizedPosition = i * pageScrollWidth;
 			pageLocs.Add(screensContainer.localPosition.x);
 		}
+		int curLevel = Camera.main.gameObject.GetComponent<LevelLoader>().CurrentLevel();
+		if (curLevel > 0){
+			startPage = (curLevel % 10 == 0) ? (int) (curLevel/10) + 1: Mathf.FloorToInt(curLevel/10) + 2;
+		}
 		scroll.horizontalNormalizedPosition = pageScrollWidth * startPage;
 		curPage = findClosestPage(screensContainer.localPosition.x);
 		if (scale){
@@ -97,9 +101,15 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 	}
 
 	public void OnPointerClick (PointerEventData data) {
-		if (data.pointerId < 1){
-			if (Mathf.Abs(data.position.x - data.pressPosition.x) < 1f){
+		if (data.pointerId < 1 && Mathf.Abs(data.position.x - data.pressPosition.x) < 1f){
+			if (curPage == 1){
 				NextPage();
+			} else {
+				if (data.position.x / Screen.width < 0.5f){
+					PrevPage();
+				} else {
+					NextPage();
+				}
 			}
 		}
 	}
