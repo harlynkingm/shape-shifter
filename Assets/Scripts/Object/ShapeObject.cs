@@ -20,10 +20,10 @@ public class ShapeObject : MonoBehaviour {
 	private Vector3 topRight;
 
 	private TimeController fatherTime;
-	private bool cancelled;
 	private SpriteRenderer selfImage;
 
 	private Vector3 lastPos;
+	private int numCollisions;
 	
 	void Start () {
 		selfImage = GetComponent<SpriteRenderer>();
@@ -59,14 +59,16 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	public void EndSelect () {
-		if (cancelled) {
+		if (numCollisions > 0) {
 			transform.position = startPos;
 		}
 		selected = false;
 	}
 
 	public void Move(Vector3 worldPoint) {
-		lastPos = transform.position;
+		if (numCollisions == 0){
+			lastPos = transform.position;
+		}
 		Vector3 newPos = new Vector3(worldPoint.x, worldPoint.y, 0) - startDistance;
 		newPos = new Vector3(
 			Mathf.Clamp(newPos.x, bottomLeft.x, topRight.x),
@@ -94,27 +96,24 @@ public class ShapeObject : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (selected){
-			if (!cancelled){
-				startPos = lastPos;
-			}
+			startPos = lastPos;
 			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
-			cancelled = true;
 			fatherTime.Cancel();
 		}
+		numCollisions++;
 	}
 
 	void OnTriggerStay2D(Collider2D coll) {
 		if (selected){
 			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
-			cancelled = true;
 			fatherTime.Cancel();
 		}
 	}
 
 	void OnTriggerExit2D(Collider2D coll) {
 		selfImage.color = Color.white;
-		cancelled = false;
 		fatherTime.StopCancel();
+		numCollisions--;
 	}
 
 	public bool isSelected (){

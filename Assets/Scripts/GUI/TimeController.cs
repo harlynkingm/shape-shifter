@@ -87,7 +87,7 @@ public class TimeController : MonoBehaviour {
 	void FreezeShapes () {
 		foreach (GameObject shape in shapes) {
 			ShapeObject s = shape.GetComponent<ShapeObject>();
-			if (s.isSelectable) {
+			if (s != null && s.isSelectable) {
 				reenable.Add(shape);
 				ToggleShape(s, false);
 			}
@@ -161,6 +161,7 @@ public class TimeController : MonoBehaviour {
 	}
 
 	public void EndLevel() {
+		analytics.EndLevel();
 		disableAll(completed);
 		state = "Completed";
 		ended = true;
@@ -176,7 +177,6 @@ public class TimeController : MonoBehaviour {
 	}
 
 	void NextLevel () {
-		analytics.EndLevel();
 		int curScene = SceneManager.GetActiveScene().buildIndex;
 		save.FinishedLevel(curScene);
 		int totalScenes = SceneManager.sceneCountInBuildSettings;
