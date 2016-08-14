@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Object\FallZone.cs" />
      <Compile Include="Assets\Scripts\Object\ObjectAnimation.cs" />
      <Compile Include="Assets\Scripts\Object\ShapeObject.cs" />
+     <Compile Include="Assets\Scripts\Object\TimerObject.cs" />
  <Reference Include="UnityEngine.Advertisements">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
  </Reference>
