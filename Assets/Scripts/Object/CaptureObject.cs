@@ -28,8 +28,6 @@ public class CaptureObject : MonoBehaviour {
 		if (other.gameObject.tag == "Player" && !collected){
 			collected = true;
 			speed = 666F;
-			DontDestroyOnLoad(gameObject);
-			GetComponent<AudioSource>().PlayOneShot(GetComponent<AudioSource>().clip, 1f);
 			fatherTime.EndLevel();
 		}
 	}

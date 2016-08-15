@@ -73,6 +73,10 @@ public class TimerObject : MonoBehaviour {
 			countdown[i].color = new Color(grey, grey, grey, 1f);
 		}
 		yield return new WaitForSeconds(1f);
+		Reset();
+	}
+
+	void Reset(){
 		curTime = 0;
 		AddTime();
 	}
