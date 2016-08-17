@@ -4,9 +4,12 @@ using UnityEngine.EventSystems;
 
 public class TouchController : MonoBehaviour {
 
+	public bool zoom = false;
+
 	private ShapeObject selected;
 //	private bool hasForceTouch;
 	private HomeController homeController;
+	private float prevDist;
 
 	void Start () {
 		homeController = GameObject.FindGameObjectWithTag("HomeBar").GetComponent<HomeController>();
@@ -16,12 +19,22 @@ public class TouchController : MonoBehaviour {
 	void Update () {
 		if (Input.touchCount > 0){
 			Touch currentTouch = Input.GetTouch(0);
-			if (currentTouch.phase == TouchPhase.Began){
+			if (Input.touchCount == 1 && currentTouch.phase == TouchPhase.Began){
 				BeginSelect(currentTouch);
 			} else if (selected && currentTouch.phase == TouchPhase.Moved){
 				MoveSelection(currentTouch);
 			} else if (selected && currentTouch.phase == TouchPhase.Ended){
 				EndSelect();
+			}
+			if (zoom && Input.touchCount == 2){
+				Touch secondTouch = Input.GetTouch(1);
+				if (secondTouch.phase == TouchPhase.Began){
+					prevDist = Vector2.Distance(currentTouch.position, secondTouch.position);
+				} else if (secondTouch.phase == TouchPhase.Moved || currentTouch.phase == TouchPhase.Moved){
+					float curDist = Vector2.Distance(currentTouch.position, secondTouch.position);
+					Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize + (prevDist - curDist) * Time.deltaTime * 0.3f, 5f, 7.5f);
+					prevDist = curDist;
+				}
 			}
 		}
 	}

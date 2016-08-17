@@ -1,21 +1,23 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/GUI/TimeController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Object/FallZone.cs">
     <Files>
-      <File FileName="Assets/Scripts/GUI/LevelSelect.cs" Line="64" Column="39" />
+      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/LevelSelect.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/HomeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Object/CaptureObject.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="99" Column="5" />
-      <File FileName="Assets/Scripts/GUI/TimeController.cs" Line="125" Column="19" />
-      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Object/FallZone.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/TimeController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="35" Column="133" />
       <File FileName="Assets/Scripts/Object/ObjectAnimation.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Controller/SaveController.cs" Line="8" Column="49" />
-      <File FileName="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs" Line="104" Column="4" />
+      <File FileName="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/SetReset.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Object/BlackHole.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUI/LevelNumber.cs" Line="15" Column="76" />
-      <File FileName="Assets/Scripts/GUI/LevelLoader.cs" Line="25" Column="18" />
+      <File FileName="Assets/Scripts/GUI/LevelNumber.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/LevelLoader.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controller/AnalyticsController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Controller/SaveController.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Object/CaptureObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Object/TimerObject.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/Object/FallZone.cs" Line="20" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

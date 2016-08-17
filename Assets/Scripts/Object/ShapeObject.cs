@@ -29,9 +29,7 @@ public class ShapeObject : MonoBehaviour {
 		selfImage = GetComponent<SpriteRenderer>();
 		fatherTime = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
 		arrows.gameObject.transform.rotation = Quaternion.identity;
-		Camera main = Camera.main;
-		bottomLeft = main.ScreenToWorldPoint(new Vector3(0, main.pixelHeight * 0.2F));
-		topRight = main.ScreenToWorldPoint(new Vector3(main.pixelWidth, main.pixelHeight * 0.9F));
+		RefreshBorders();
 		RefreshSelectable();
 		if (isBouncy){
 			bounceBorder.color = new Color(1f, 1f, 1f, 0.68f);
@@ -53,6 +51,7 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	public void StartSelect (Vector3 worldPoint) {
+		RefreshBorders();
 		startDistance = worldPoint - transform.position;
 		startPos = transform.position;
 		selected = true;
@@ -118,5 +117,11 @@ public class ShapeObject : MonoBehaviour {
 
 	public bool isSelected (){
 		return selected;
+	}
+
+	private void RefreshBorders(){
+		Camera main = Camera.main;
+		bottomLeft = main.ScreenToWorldPoint(new Vector3(0, main.pixelHeight * 0.2F));
+		topRight = main.ScreenToWorldPoint(new Vector3(main.pixelWidth, main.pixelHeight * 0.9F));
 	}
 }

@@ -7,7 +7,7 @@ public class FallZone : MonoBehaviour {
 
 	void Start () {
 		fatherTime = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
-		transform.position = new Vector3(0, -7f);
+		transform.position = new Vector3(0, -10f);
 	}
 
 	void OnTriggerEnter2D (Collider2D coll) {
