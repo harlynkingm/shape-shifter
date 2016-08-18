@@ -7,6 +7,7 @@ public class ShapeObject : MonoBehaviour {
 
 	public bool isSelectable;
 	public bool isBouncy;
+	public float bounceMultiplier = 1.0f;
 	public SpriteRenderer arrows;
 	public SpriteRenderer shadow;
 	public SpriteRenderer bounceBorder;
@@ -89,7 +90,7 @@ public class ShapeObject : MonoBehaviour {
 		
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (isBouncy && coll.gameObject.tag == "Player"){
-			coll.rigidbody.AddForce(coll.contacts[0].normal * -1 * 200f);
+			coll.rigidbody.AddForce(coll.contacts[0].normal * -1 * 200f * bounceMultiplier);
 		}
 	}
 
