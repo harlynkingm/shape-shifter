@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class TimerObject : MonoBehaviour {
 
@@ -8,6 +9,7 @@ public class TimerObject : MonoBehaviour {
 	public float waitTime = 2f;
 	public bool disappear = true;
 	public GameObject trigger;
+	public GameObject cllider;
 
 	private float grey = 0.7f;
 
@@ -40,27 +42,29 @@ public class TimerObject : MonoBehaviour {
 	}
 
 	IEnumerator Disappear(){
-		GetComponent<Collider2D>().enabled = false;
 		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
 		while (transform.localScale.x > 0.665f){
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one * 0.66f, Time.deltaTime * 7f);
+			cllider.transform.localScale = Vector3.Lerp(cllider.transform.localScale, Vector3.zero, Time.deltaTime * 20f);
 			renderer.color = Color.Lerp(renderer.color, new Color(1f, 1f, 1f, 0.2f), Time.deltaTime * 7f);
 			yield return null;
 		}
 		transform.localScale = Vector3.one * 0.66f;
+		cllider.GetComponent<Collider2D>().enabled = false;
 		renderer.color = new Color(1f, 1f, 1f, 0.2f);
 		yield return new WaitForSeconds(waitTime);
 		StartCoroutine(Reappear());
 	}
 
 	IEnumerator Reappear(){
-		GetComponent<Collider2D>().enabled = true;
+		cllider.GetComponent<Collider2D>().enabled = true;
 		SpriteRenderer renderer = GetComponent<SpriteRenderer>();
 		for (int i = 0; i < countdown.Length; i++){
 			countdown[i].color = new Color(0f, 0f, 0f, 0f);
 		}
 		while (transform.localScale.x < 0.995f){
 			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 7f);
+			cllider.transform.localScale = Vector3.Lerp(cllider.transform.localScale, Vector3.one, Time.deltaTime * 20f);
 			renderer.color = Color.Lerp(renderer.color, Color.white, Time.deltaTime * 7f);
 			for (int i = 0; i < countdown.Length; i++){
 				countdown[i].color = Color.Lerp(countdown[i].color, new Color(grey, grey, grey, 1f), Time.deltaTime * 7f);

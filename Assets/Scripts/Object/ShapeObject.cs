@@ -65,7 +65,7 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	public void Move(Vector3 worldPoint) {
-		if (numCollisions == 0){
+		if (numCollisions <= 0){
 			lastPos = transform.position;
 		}
 		Vector3 newPos = new Vector3(worldPoint.x, worldPoint.y, 0) - startDistance;

@@ -5,6 +5,8 @@ Project("{354804BA-8CB0-02A7-7FC5-AC339D63FF4D}") = "Shape Shifter", "Assembly-C
 EndProject
 Project("{354804BA-8CB0-02A7-7FC5-AC339D63FF4D}") = "Shape Shifter", "Assembly-CSharp.csproj", "{520717C5-708E-1B6C-7B90-5DB94B9B85CE}"
 EndProject
+Project("{354804BA-8CB0-02A7-7FC5-AC339D63FF4D}") = "Shape Shifter", "Assembly-CSharp-Editor.csproj", "{5EE52775-28BF-AD3F-95D8-A2F2D8AD9D7E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,6 +21,10 @@ Global
 		{520717C5-708E-1B6C-7B90-5DB94B9B85CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{520717C5-708E-1B6C-7B90-5DB94B9B85CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{520717C5-708E-1B6C-7B90-5DB94B9B85CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5EE52775-28BF-AD3F-95D8-A2F2D8AD9D7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5EE52775-28BF-AD3F-95D8-A2F2D8AD9D7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5EE52775-28BF-AD3F-95D8-A2F2D8AD9D7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5EE52775-28BF-AD3F-95D8-A2F2D8AD9D7E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
