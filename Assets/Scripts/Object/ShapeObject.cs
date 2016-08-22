@@ -27,6 +27,7 @@ public class ShapeObject : MonoBehaviour {
 	private int numCollisions;
 	
 	void Start () {
+		arrows.color = Camera.main.backgroundColor;
 		selfImage = GetComponent<SpriteRenderer>();
 		fatherTime = GameObject.FindGameObjectWithTag("TimeController").GetComponent<TimeController>();
 		arrows.gameObject.transform.rotation = Quaternion.identity;
@@ -89,13 +90,13 @@ public class ShapeObject : MonoBehaviour {
 	}
 
 	IEnumerator BounceBack(){
-		Vector3 top = new Vector3(0.995f, 0.995f, 0.995f);
-		transform.localScale = new Vector3(0.90f, 0.90f, 0.90f);
-		while (transform.localScale.x < top.x){
-			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 10f);
+		Vector3 top = transform.localScale;
+		transform.localScale = top * 0.9f;
+		while (transform.localScale.x < top.x * 0.99f){
+			transform.localScale = Vector3.Lerp(transform.localScale, top, Time.deltaTime * 10f);
 			yield return null;
 		}
-		transform.localScale = Vector3.one;
+		transform.localScale = top;
 	}
 		
 	void OnCollisionEnter2D(Collision2D coll) {
@@ -133,7 +134,7 @@ public class ShapeObject : MonoBehaviour {
 
 	private void RefreshBorders(){
 		Camera main = Camera.main;
-		bottomLeft = main.ScreenToWorldPoint(new Vector3(0, main.pixelHeight * 0.2F));
+		bottomLeft = main.ScreenToWorldPoint(new Vector3(0, main.pixelHeight * 0.17F));
 		topRight = main.ScreenToWorldPoint(new Vector3(main.pixelWidth, main.pixelHeight * 0.9F));
 	}
 }

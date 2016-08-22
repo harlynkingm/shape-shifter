@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Level\ToggleObjects.cs" />
      <Compile Include="Assets\Scripts\Object\BlackHole.cs" />
      <Compile Include="Assets\Scripts\Object\CaptureObject.cs" />
+     <Compile Include="Assets\Scripts\Object\CaptureSpawn.cs" />
      <Compile Include="Assets\Scripts\Object\FallZone.cs" />
      <Compile Include="Assets\Scripts\Object\ObjectAnimation.cs" />
      <Compile Include="Assets\Scripts\Object\ShapeObject.cs" />

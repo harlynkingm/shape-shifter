@@ -149,7 +149,7 @@ public class TimeController : MonoBehaviour {
 		disableAll(completed);
 		state = "Completed";
 		ended = true;
-		Invoke("NextLevel", 0.7f);
+		Invoke("NextLevel", 2f);
 	}
 
 	public void ResetLevel() {
