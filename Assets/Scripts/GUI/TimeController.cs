@@ -7,9 +7,7 @@ using UnityEngine.UI;
 
 public class TimeController : MonoBehaviour {
 
-	public bool canPause = false;
 	public GameObject play;
-	public GameObject pause;
 	public GameObject stop;
 	public GameObject cancel;
 	public GameObject completed;
@@ -38,7 +36,6 @@ public class TimeController : MonoBehaviour {
 		save = Camera.main.gameObject.GetComponent<SaveController>();
 		initPos = player.transform.position;
 		states.Add(play);
-		states.Add(pause);
 		states.Add(stop);
 		states.Add(cancel);
 		states.Add(completed);
@@ -62,11 +59,7 @@ public class TimeController : MonoBehaviour {
 				Play();
 				break;
 			case "Play":
-				if (canPause){
-					Pause();
-				} else {
-					Stop();
-				}
+				Stop();
 				break;
 			case "Pause":
 				Play();
@@ -114,16 +107,13 @@ public class TimeController : MonoBehaviour {
 	}
 
 	void Play() {
-		if (canPause){
-			disableAll(pause);
-		} else {
-			disableAll(stop);
-		}
+		disableAll(stop);
 		state = "Play";
 		player.GetComponent<Rigidbody2D>().isKinematic = false;
 		player.GetComponent<CircleCollider2D>().isTrigger = false;
 		SetShapeTriggers(false);
 		FreezeShapes();
+		analytics.addAttempt();
 	}
 
 	void Stop() {
@@ -134,16 +124,10 @@ public class TimeController : MonoBehaviour {
 		player.GetComponent<CircleCollider2D>().isTrigger = true;
 		SetShapeTriggers(true);
 		UnfreezeShapes();
-		analytics.addAttempt();
 	}
 
-	void Pause() {
-		disableAll(play);
-		state = "Pause";
-		player.GetComponent<Rigidbody2D>().isKinematic = true;
-		player.GetComponent<CircleCollider2D>().isTrigger = true;
-		SetShapeTriggers(true);
-		UnfreezeShapes();
+	void ResetLoad(){
+		levelLoader.loading.color = new Color(1f, 1f, 1f, 0f);
 	}
 
 	public void Cancel() {

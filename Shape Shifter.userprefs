@@ -2,13 +2,13 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Object/ShapeObject.cs">
     <Files>
-      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="122" Column="16" />
+      <File FileName="Assets/Scripts/Object/ShapeObject.cs" Line="38" Column="48" />
       <File FileName="Assets/Scripts/GUI/LevelSelect.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/HomeController.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/TimeController.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="35" Column="133" />
+      <File FileName="Assets/Scripts/Controller/TouchController.cs" Line="28" Column="17" />
       <File FileName="Assets/Scripts/Object/ObjectAnimation.cs" Line="1" Column="1" />
-      <File FileName="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/GUI/MyHorizontalScrollSnap.cs" Line="30" Column="4" />
       <File FileName="Assets/Scripts/GUI/SetReset.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/Object/BlackHole.cs" Line="1" Column="1" />
       <File FileName="Assets/Scripts/GUI/LevelNumber.cs" Line="1" Column="1" />

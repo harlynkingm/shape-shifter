@@ -33,7 +33,7 @@ public class ShapeObject : MonoBehaviour {
 		RefreshBorders();
 		RefreshSelectable();
 		if (isBouncy){
-			bounceBorder.color = new Color(1f, 1f, 1f, 0.68f);
+			bounceBorder.color = new Color(bounceBorder.color.r, bounceBorder.color.g, bounceBorder.color.b, 1f);
 		} else {
 			GameObject.Destroy(bounceBorder.gameObject);
 		}
@@ -80,24 +80,35 @@ public class ShapeObject : MonoBehaviour {
 
 	public void RefreshSelectable () {
 		if (isSelectable){
-			arrows.color = new Color(1F, 1F, 1F, 1F);
+			arrows.color = new Color(arrows.color.r, arrows.color.g, arrows.color.b, 1F);
 			shadow.color = new Color(1F, 1F, 1F, 0.5F);
 		} else {
-			arrows.color = new Color(1F, 1F, 1F, 0F);
+			arrows.color = new Color(arrows.color.r, arrows.color.g, arrows.color.b, 0F);
 			shadow.color = new Color(1F, 1F, 1F, 0F);
 		}
+	}
+
+	IEnumerator BounceBack(){
+		Vector3 top = new Vector3(0.995f, 0.995f, 0.995f);
+		transform.localScale = new Vector3(0.90f, 0.90f, 0.90f);
+		while (transform.localScale.x < top.x){
+			transform.localScale = Vector3.Lerp(transform.localScale, Vector3.one, Time.deltaTime * 10f);
+			yield return null;
+		}
+		transform.localScale = Vector3.one;
 	}
 		
 	void OnCollisionEnter2D(Collision2D coll) {
 		if (isBouncy && coll.gameObject.tag == "Player"){
 			coll.rigidbody.AddForce(coll.contacts[0].normal * -1 * 200f * bounceMultiplier);
+			StartCoroutine(BounceBack());
 		}
 	}
 
 	void OnTriggerEnter2D(Collider2D coll) {
 		if (selected){
 			startPos = lastPos;
-			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
+			selfImage.color = new Color(1F, 1F, 1F, 0.5F);
 			fatherTime.Cancel();
 		}
 		numCollisions++;
@@ -105,7 +116,7 @@ public class ShapeObject : MonoBehaviour {
 
 	void OnTriggerStay2D(Collider2D coll) {
 		if (selected){
-			selfImage.color = new Color(1F, 1F, 1F, 0.75F);
+			selfImage.color = new Color(1F, 1F, 1F, 0.5F);
 			fatherTime.Cancel();
 		}
 	}

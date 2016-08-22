@@ -22,12 +22,12 @@ public class MyHorizontalScrollSnap : MonoBehaviour, IBeginDragHandler, IEndDrag
 
 	void Start () {
 		scroll = GetComponent<ScrollRect>();
-		for (int i = 0; i < scroll.content.transform.childCount; i++){
-			RectTransform curRect = scroll.content.transform.GetChild(i).GetComponent<RectTransform>();
+		screensContainer = scroll.content;
+		for (int i = 0; i < screensContainer.childCount; i++){
+			RectTransform curRect = screensContainer.GetChild(i).GetComponent<RectTransform>();
 			screens.Add(curRect);
 			if (scale) curRect.gameObject.AddComponent<ScaleControl>().scale = 0.75f;
 		}
-		screensContainer = scroll.content;
 		float pageScrollWidth = 1f/(screens.Count - 1);
 		for (int i = 0; i < screens.Count; i++){
 			scroll.horizontalNormalizedPosition = i * pageScrollWidth;

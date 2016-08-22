@@ -5,6 +5,7 @@ public class ObjectAnimation : MonoBehaviour {
 
 	public Vector2 destination;
 	public float speed = 3f;
+	public float rotationSpeed = 0f;
 	private Vector2 start;
 	private Vector2 end;
 
@@ -12,6 +13,10 @@ public class ObjectAnimation : MonoBehaviour {
 		start = (Vector2)transform.position;
 		end = (Vector2)transform.position + destination;
 		ResetAnim(start, end);
+	}
+
+	void Update () {
+		transform.Rotate(Vector3.forward * rotationSpeed * Time.deltaTime);
 	}
 
 	IEnumerator SmoothLerpLoop(Vector2 start, Vector2 end) {
