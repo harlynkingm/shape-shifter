@@ -20,6 +20,7 @@ public class TimeController : MonoBehaviour {
 	private String state = "Stop";
 	private List<GameObject> states = new List<GameObject>();
 	private GameObject[] shapes;
+	private GameObject[] rotates;
 	private List<GameObject> reenable = new List<GameObject>();
 	private bool ended = false;
 
@@ -30,6 +31,7 @@ public class TimeController : MonoBehaviour {
 	void Start () {
 		thisBg = GetComponent<Image>();
 		shapes = GameObject.FindGameObjectsWithTag("ShapeObject");
+		rotates = GameObject.FindGameObjectsWithTag("TiltObject");
 		player = GameObject.FindWithTag("Player");
 		levelLoader = GameObject.FindWithTag("LevelLoader").GetComponent<LevelLoader>();
 		analytics = Camera.main.gameObject.GetComponent<AnalyticsController>();
@@ -95,6 +97,13 @@ public class TimeController : MonoBehaviour {
 		reenable.Clear();
 	}
 
+	void UnrotateShapes () {
+		foreach (GameObject shape in rotates) {
+			TiltObject s = shape.GetComponent<TiltObject>();
+			s.Reset();
+		}
+	}
+
 	void SetShapeTriggers (bool enabled) {
 		foreach (GameObject shape in shapes){
 			shape.GetComponent<Collider2D>().isTrigger = enabled;
@@ -124,6 +133,7 @@ public class TimeController : MonoBehaviour {
 		player.GetComponent<CircleCollider2D>().isTrigger = true;
 		SetShapeTriggers(true);
 		UnfreezeShapes();
+		UnrotateShapes();
 	}
 
 	void ResetLoad(){
